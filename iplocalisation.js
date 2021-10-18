@@ -1,7 +1,7 @@
 const { Command } = require('@notenoughupdates/discord-akairo');
 
 
-class ipLocaslisationCommand extends Command {
+class ipLocaslisationCommand extends Command {                         // Parameters of the command
     constructor() {
         super('iplocaslisation', {
            aliases: ['ipLoc', 'LocIP'],
@@ -15,13 +15,13 @@ class ipLocaslisationCommand extends Command {
         });
     }
 
-    async exec(message, args) {
-      var geoip  = require('geoip-lite');
-      var iptoloc = args.ip;
-      var foo = geoip.lookup(iptoloc);
+    async exec(message, args) {             //beginning of the commands
+      var geoip  = require('geoip-lite');   //library geo-ip 
+      var iptoloc = args.ip;                //ip gave in the command
+      var foo = geoip.lookup(iptoloc);      //check
 
 
-      if (!args.ip) return message.channel.send({ embeds: [ 
+      if (!args.ip) return message.channel.send({ embeds: [      //embed exemple
         this.client.functions.embed()
           .setColor('#7FC9FF')
           .setTitle("Exemple Of The Embed")
@@ -44,9 +44,9 @@ class ipLocaslisationCommand extends Command {
           .setFooter(message.author.username, message.author.avatarURL())
       ]});
 
-      var flag = foo.country.toLowerCase();
-      
-      return message.channel.send({ embeds: [ 
+      var flag = foo.country.toLowerCase();                     //var flag of the embed 
+                                                
+      return message.channel.send({ embeds: [                   //embed 
         this.client.functions.embed()
           .setColor('#7FC9FF')
           .setTitle(iptoloc)
